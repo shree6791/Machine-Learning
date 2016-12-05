@@ -1,0 +1,6 @@
+Connection con = DriverManager.getConnection(url,"system","newuser123"); 
+Statement statement = con.createStatement();  
+ResultSet resultset = statement.executeQuery("alter user HR identified by HR account unlock");
+
+//Connect to HR database
+con = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:XE","HR","HR");
