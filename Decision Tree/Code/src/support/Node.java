@@ -1,4 +1,4 @@
-package iris;
+package support;
 
 public class Node {
 
@@ -10,15 +10,15 @@ public class Node {
 	// Attribute values that are being added to Node
 	// node name, branch names, child nodes
 
+	public Node() {
+		super();
+	}
+
 	public Node(String nodeName, String[] branchNames, double informationGain) {
 		this.nodeName = nodeName;
 		this.branchNames = branchNames;
 		this.informationGain = informationGain;
 		this.children = new Node[branchNames.length];
-	}
-
-	public Node() {
-		super();
 	}
 
 	@Override

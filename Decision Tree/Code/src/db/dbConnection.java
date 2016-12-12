@@ -50,6 +50,12 @@ public class dbConnection {
 		return countValue;
 	}
 
+	public void dropAllRows(String tableName) throws SQLException {
+		String query = "truncate table " + tableName;
+		ResultSet resultSet = statement.executeQuery(query);
+		return;
+	}
+
 	public void deleteTable(String tableName) throws SQLException {
 		String query = "drop table " + tableName;
 		ResultSet resultSet = statement.executeQuery(query);
@@ -126,12 +132,21 @@ public class dbConnection {
 		return;
 	}
 
+	public void insertRowTemp(String rowValues, String tableName) throws SQLException {
+
+		String query = "insert into " + tableName + " values " + rowValues;
+		ResultSet resultSet = statement.executeQuery(query);
+		return;
+
+	}
+
 	public void insertRow(String[] rowValues, String tableName) throws SQLException {
 
 		String query = "insert into " + tableName + " values ( '" + rowValues[0] + "' , '" + rowValues[1] + "' , '"
 				+ rowValues[2] + "' , '" + rowValues[3] + "' , '" + rowValues[4] + "'  ) ";
 		ResultSet resultSet = statement.executeQuery(query);
 		return;
+
 	}
 
 	public void deleteColumn(String columnName, String tableName) throws SQLException {
@@ -257,7 +272,7 @@ public class dbConnection {
 			trainingExample[i].add(resultSet.getString(3));
 			trainingExample[i].add(resultSet.getString(4));
 			trainingExample[i].add(resultSet.getString(5));
-			
+
 			trainingExampleList.add(trainingExample[i]);
 			i++;
 		}
@@ -340,10 +355,12 @@ public class dbConnection {
 		return trainingExampleList;
 	}
 
-	public void reorderColumn(String tableName) throws SQLException {
+	public void reorderColumns(String reorder, String tableName) throws SQLException {
 
-		String line1 = "create table tempTable as select SEPALLENGTH_026, SEPALWIDTH_120, PETALLENGTH_26, PETALWIDTH_34,IRIS from "
-				+ tableName;
+		String line1 = "create table tempTable as select " + reorder + "from " + tableName;
+		// SEPALLENGTH_07, SEPALWIDTH_116, PETALLENGTH_20, PETALWIDTH_30, IRIS
+		// from "
+
 		statement.executeQuery(line1);
 
 		String line2 = "rename " + tableName + " to oldTable";
@@ -358,16 +375,16 @@ public class dbConnection {
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
 
-		dbConnection db = new dbConnection();
+		// dbConnection db = new dbConnection();
 		// db.createTableIris("TrainIrisData");
 
-		String tableName = "TrainTennisData";
-		db.reorderColumn(tableName);
+		// String tableName = "TrainTennisData";
+		// db.reorderColumn(tableName);
 		// db.trainingExamplesTrainingSet(tableName);
 		// db.createTable(tableName);
 		// db.rowCount(tableName);
 
-		// IrisTree ir = new IrisTree();
+		// Iris ir = new Iris();
 		// db.deleteTable("TrainIrisDataString");
 		// ir.recoverTableValues(tableName);
 	}
