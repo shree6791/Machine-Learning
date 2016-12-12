@@ -1,2 +1,2 @@
 # Machine-Learning
-The repository consists of Machine Learning projects that I have implemented till now. The projects focuses on supervised and supervised algorithms.
+The repository consists of Machine Learning projects that have been implemented by Shreenidhi Sudhakar. His projects focuses on supervised and unsupervised ML algorithms.
